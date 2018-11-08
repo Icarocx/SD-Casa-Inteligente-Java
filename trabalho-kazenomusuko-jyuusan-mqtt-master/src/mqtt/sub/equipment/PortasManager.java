@@ -8,7 +8,7 @@ public class PortasManager extends EquipmentManager{
 	
 	private final String[] topics = {TOPIC_RELOGIO};
 
-	private double relogio = 0;
+	private double relogio = 0.0;
 	
 	public PortasManager() {
 		super("Portas_Client");
@@ -25,13 +25,12 @@ public class PortasManager extends EquipmentManager{
 		subscribe(topics);
 	}
 	
-
 	@Override
 	public void messageArrived(String topic, MqttMessage message) throws Exception {
 		System.out.println("Alterado: " + topic + " " + message);
 		if(topic.equals(TOPIC_RELOGIO))
 			this.relogio = Double.parseDouble(message.toString());
-		if(relogio > 22 || relogio < 5) {
+		if(relogio>22 || relogio<6) {
 			status = true;
 			System.out.println(this.getClass().getName() + "STATUS ABERTO");
 		}

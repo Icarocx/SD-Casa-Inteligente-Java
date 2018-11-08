@@ -9,7 +9,7 @@ public class LuzesManager extends EquipmentManager{
 	private final String[] topics = {TOPIC_PRESENCA, TOPIC_RELOGIO};
 	
 	private boolean presenca = false;
-	private double relogio = 0;
+	private double relogio = 0.0;
 	
 	public LuzesManager() {
 		super("Luzes_Client");
@@ -35,7 +35,7 @@ public class LuzesManager extends EquipmentManager{
 		else
 			if(topic.equals(TOPIC_RELOGIO))
 				this.relogio = Double.parseDouble(message.toString());
-		if(presenca==true && relogio>=18) {
+		if(presenca==true && (relogio>=18 || relogio<5)) {
 			status = true;
 			System.out.println(this.getClass().getName() + "STATUS ABERTO");
 		}

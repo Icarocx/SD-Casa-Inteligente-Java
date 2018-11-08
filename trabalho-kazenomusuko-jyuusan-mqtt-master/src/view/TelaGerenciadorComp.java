@@ -16,7 +16,9 @@ import mqtt.sub.equipment.LuzesManager;
 import mqtt.sub.equipment.PortasManager;
 import mqtt.sub.equipment.TVManager;
 
-public class TelaGerenciadorComp {
+public class TelaGerenciadorComp{
+	
+	//private static final String IMAGES_DIR = "images\\";
 	
 	private ArCondicionadoManager arcond;
 	private IrrigadorManager irrigador;
@@ -53,15 +55,15 @@ public class TelaGerenciadorComp {
 	 */
 	public TelaGerenciadorComp() {
 		arcond = new ArCondicionadoManager();
-		arcondTela = new TelaComponente("Ar-Condicionado", "images/arcondicionado on.png", "images/arcondicionado off.png", false);
+		arcondTela = new TelaComponente("Ar-Condicionado", "arcondicionado on.png", "arcondicionado off.png", false);
 		tele = new TVManager();
-		teleTela = new TelaComponente("Televisão", "images/televisão on.png", "images/televisão off.png", false);
+		teleTela = new TelaComponente("Televisão", "televisão on.png", "televisão off.png", false);
 		luzes = new LuzesManager();
-		luzesTela = new TelaComponente("Luzes", "images/luzes on.png", "images/luzes off.png", false);
+		luzesTela = new TelaComponente("Luzes", "luzes on.png", "luzes off.png", false);
 		portas = new PortasManager();
-		portasTela = new TelaComponente("Portas", "images/porta on.png", "images/porta off.png", false);
+		portasTela = new TelaComponente("Portas", "porta on.png", "porta off.png", false);
 		irrigador = new IrrigadorManager();
-		irrigadorTela = new TelaComponente("Irrigadores", "images/irrigacao on.png", "images/irrigacao off.png", false);
+		irrigadorTela = new TelaComponente("Irrigadores", "irrigacao on.png", "irrigacao off.png", false);
 		
 		initialize();
 		new Thread(new Runnable() {
@@ -69,11 +71,11 @@ public class TelaGerenciadorComp {
 			@Override
 			public void run() {
 					while(true) {
-						arcondTela.setStatus(arcond.getStatus());
-						teleTela.setStatus(tele.getStatus());
-						luzesTela.setStatus(luzes.getStatus());
-						portasTela.setStatus(portas.getStatus());
-						irrigadorTela.setStatus(irrigador.getStatus());
+					arcondTela.setStatus(arcond.getStatus());
+					teleTela.setStatus(tele.getStatus());
+					luzesTela.setStatus(luzes.getStatus());
+					portasTela.setStatus(portas.getStatus());
+					irrigadorTela.setStatus(irrigador.getStatus());
 					try {
 						frame.repaint();
 					}catch(Exception e) {

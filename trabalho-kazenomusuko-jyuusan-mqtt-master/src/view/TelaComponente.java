@@ -5,8 +5,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -18,6 +16,7 @@ import javax.swing.SwingConstants;
 
 public class TelaComponente {
 
+	private static final String IMAGES_DIR = "images\\";
 	
 	private String nome;
 	private String iconeon;
@@ -49,8 +48,8 @@ public class TelaComponente {
 	 */
 	public TelaComponente(String nome, String iconeon, String iconeoff, boolean status) {
 		this.nome = nome;
-		this.iconeon = iconeon;
-		this.iconeoff = iconeoff;
+		this.iconeon = IMAGES_DIR + iconeon;
+		this.iconeoff =IMAGES_DIR +  iconeoff;
 		if(status) this.status = "ON";
 		else this.status = "OFF";
 		initialize();
@@ -111,23 +110,6 @@ public class TelaComponente {
 		btn_status.setHorizontalAlignment(SwingConstants.RIGHT);
 		btn_status.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		pn_sub.add(btn_status);
-		btn_status.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent ae) {
-								if(ae.getActionCommand() == "ON") {
-									btn_status.setBackground(new Color(178, 34, 34));
-									btn_status.setText("OFF");
-									lb_icone.setIcon(new ImageIcon(getIconOff()));
-								}
-								else
-								{
-									btn_status.setBackground(new Color(0, 255, 127));
-									btn_status.setText("ON");
-									lb_icone.setIcon(new ImageIcon(getIconOn()));
-								}
-			}
-			
-		});
 		
 		JLabel lbBottom = new JLabel(" ");
 		lbBottom.setHorizontalAlignment(SwingConstants.CENTER);

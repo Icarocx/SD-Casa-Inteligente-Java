@@ -7,29 +7,28 @@ import mqtt.pub.SensorManager;
 public class ClockManager extends SensorManager{	
 
 	private double time;
-	private final int DEFAULT_CLK = 0;
+	private final double DEFAULT_TIME = 0.0;
 	private final String TOPIC = TOPIC_RELOGIO;
 	
 	
 	public ClockManager() {
 		super("Clock_Client");
 		// TODO Auto-generated constructor stub
-		this.time = DEFAULT_CLK;
+		this.time = DEFAULT_TIME;
 	}
 
 	public ClockManager(String ip, String port, String clientId) {
 		super(ip, port, clientId);
-		this.time = DEFAULT_CLK;
+		this.time = DEFAULT_TIME;
 	}
 
 
 	public ClockManager(String ip, String port) {
 		super(ip, port);
-		this.time = DEFAULT_CLK;
+		this.time = DEFAULT_TIME;
 	}
 
 
-	
 	public void changeValue(int hours, int minutes, int seconds) {
 		this.time = hours + ((double)minutes)/60;
 	}
@@ -46,11 +45,6 @@ public class ClockManager extends SensorManager{
 			e.printStackTrace();
 		}		
 	}	
-	
-	public double getTime()
-	{
-		return this.time;
-	}
 	
 	public static void main(String args[]) {
 		@SuppressWarnings("unused")

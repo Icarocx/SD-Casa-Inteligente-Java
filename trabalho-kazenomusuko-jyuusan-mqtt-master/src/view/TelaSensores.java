@@ -28,6 +28,7 @@ import mqtt.pub.sensors.TempManager;
 
 public class TelaSensores implements ActionListener, ChangeListener{
 
+	private static final String IMAGES_DIR = "images\\";
 	ClockManager clock;
 	MoistureManager umidade;
 	PresenceManager presenca;
@@ -98,7 +99,7 @@ public class TelaSensores implements ActionListener, ChangeListener{
 		
 		cboxHora = new JComboBox<String>();
 		cboxHora.setMaximumRowCount(10);
-		cboxHora.setModel(new DefaultComboBoxModel<String>(new String[] {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"}));
+		cboxHora.setModel(new DefaultComboBoxModel<String>(new String[] {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
 		clockintPanel.add(cboxHora);
 		
 		JLabel label = new JLabel(":");
@@ -115,7 +116,7 @@ public class TelaSensores implements ActionListener, ChangeListener{
 		
 		JLabel label_1 = new JLabel("");
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setIcon(new ImageIcon("C:\\Users\\\u00CDcaro\\eclipse-workspace\\trabalho-kazenomusuko-jyuusan-mqtt-master\\images\\clock.png"));
+		label_1.setIcon(new ImageIcon(IMAGES_DIR + "clock.png"));
 		clockSubPanel.add(label_1, BorderLayout.CENTER);
 		
 		JSeparator separator_1 = new JSeparator();
@@ -135,7 +136,7 @@ public class TelaSensores implements ActionListener, ChangeListener{
 		
 		JLabel label_2 = new JLabel("");
 		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		label_2.setIcon(new ImageIcon("C:\\Users\\\u00CDcaro\\eclipse-workspace\\trabalho-kazenomusuko-jyuusan-mqtt-master\\images\\term.png"));
+		label_2.setIcon(new ImageIcon(IMAGES_DIR +"term.png"));
 		tempSubPanel.add(label_2, BorderLayout.CENTER);
 		
 		JPanel tempSliderPanel = new JPanel();
@@ -146,7 +147,7 @@ public class TelaSensores implements ActionListener, ChangeListener{
 		sliderTemp.setPaintTicks(true);
 		sliderTemp.setMinorTickSpacing(5);
 		sliderTemp.setMajorTickSpacing(10);
-		sliderTemp.setMaximum(80);
+		sliderTemp.setMaximum(60);
 		sliderTemp.setValue(24);
 		sliderTemp.setForeground(Color.GRAY);
 		tempSliderPanel.add(sliderTemp, BorderLayout.CENTER);
@@ -156,7 +157,7 @@ public class TelaSensores implements ActionListener, ChangeListener{
 		txtSlider.setEditable(false);
 		tempSliderPanel.add(txtSlider, BorderLayout.EAST);
 		txtSlider.setColumns(5);
-		txtSlider.setText(""+sliderTemp.getValue());
+		txtSlider.setText(""+sliderTemp.getValue()+" °C");
 		
 		JSeparator separator = new JSeparator();
 		tempPanel.add(separator, BorderLayout.SOUTH);
@@ -175,7 +176,7 @@ public class TelaSensores implements ActionListener, ChangeListener{
 		
 		JLabel label_3 = new JLabel("");
 		label_3.setHorizontalAlignment(SwingConstants.CENTER);
-		label_3.setIcon(new ImageIcon("C:\\Users\\\u00CDcaro\\eclipse-workspace\\trabalho-kazenomusuko-jyuusan-mqtt-master\\images\\baseline_transfer_within_a_station_black_48dp.png"));
+		label_3.setIcon(new ImageIcon(IMAGES_DIR + "baseline_transfer_within_a_station_black_48dp.png"));
 		pressSubPanel.add(label_3, BorderLayout.CENTER);
 		
 		btnPresenca = new JButton("OFF");
@@ -197,7 +198,7 @@ public class TelaSensores implements ActionListener, ChangeListener{
 		
 		JLabel label_4 = new JLabel("");
 		label_4.setHorizontalAlignment(SwingConstants.CENTER);
-		label_4.setIcon(new ImageIcon("C:\\Users\\\u00CDcaro\\eclipse-workspace\\trabalho-kazenomusuko-jyuusan-mqtt-master\\images\\baseline_cloud_black_48dp.png"));
+		label_4.setIcon(new ImageIcon(IMAGES_DIR + "baseline_cloud_black_48dp.png"));
 		umidSubPanel.add(label_4, BorderLayout.CENTER);
 		
 		JPanel umidSliderPanel = new JPanel();
@@ -205,7 +206,6 @@ public class TelaSensores implements ActionListener, ChangeListener{
 		umidSliderPanel.setLayout(new BorderLayout(0, 0));
 		
 		sliderUmi = new JSlider();
-		sliderUmi.setMaximum(120);
 		sliderUmi.setValue(60);
 		sliderUmi.setMinorTickSpacing(5);
 		sliderUmi.setMajorTickSpacing(10);
@@ -217,19 +217,19 @@ public class TelaSensores implements ActionListener, ChangeListener{
 		txtUmidade.setEditable(false);
 		umidSliderPanel.add(txtUmidade, BorderLayout.EAST);
 		txtUmidade.setColumns(5);
-		txtUmidade.setText(""+sliderUmi.getValue());
+		txtUmidade.setText(""+sliderUmi.getValue()+" %");
 	}
 
 	@Override
 	public void stateChanged(ChangeEvent ce) {
 		if(ce.getSource() == sliderTemp)
 		{
-			txtSlider.setText(""+sliderTemp.getValue());
+			txtSlider.setText(""+sliderTemp.getValue()+" °C");
 			temperatura.changeValue(sliderTemp.getValue());
 		}
 		else
 		{
-			txtUmidade.setText(""+sliderUmi.getValue());
+			txtUmidade.setText(""+sliderUmi.getValue()+" %");
 			umidade.changeValue(sliderUmi.getValue());
 		}
 		
